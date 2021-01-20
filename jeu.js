@@ -49,16 +49,22 @@ function randomNumber(max) {
 }
 
 /**
+ * Array to randomize monster name
+ */
+monsterNames = ['Tofu', 'Bouftou', 'Kanigrou', 'Blop Royal', 'Prespic', 'Piou', 'Chafer']
+/**
  * Constructor for the class Monster
  */
 class Monster {
     constructor() {
+        this._name = monsterNames[randomNumber(monsterNames.length)];
         this._experience = randomNumber(51); // de 0 à 50
         this._attack = randomNumber(this._experience+1);
         this._defense = randomNumber(this._experience+1);
         this._gold = randomNumber(51);
     }
 }
+
 /**
  * Constructor for the class Seller
  */
@@ -127,10 +133,10 @@ function meetSeller() {
 function meetMonster() {
     console.log('A monster will promptly be generated.');
     let monster = new Monster();
-    console.log(`New monster has a ${monster._experience} experience, ${monster._attack} attack, ${monster._defense} defense and ${monster._gold} gold.`); 
+    console.log(`New monster ${monster._name} has a ${monster._experience} experience, ${monster._attack} attack, ${monster._defense} defense and ${monster._gold} gold.`); 
     toDiv('monsterTurn');
 }
-
+meetMonster();
 /**
  * Function to randomize the next turn
  */
