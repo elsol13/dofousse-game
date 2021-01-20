@@ -1,107 +1,114 @@
+//#region IMPORTS
 import Player from './class/player.js'
 import Monster from './class/monstre.js'
 import Seller from './class/seller.js'
+//#endregion
 
-
-//#region Showing & hiding HTML divs on index.html
 /**
- * Show only the intro div on start
+ *  @description Show only the intro div on start
  */
 function getStarted() {
-    document.getElementById("debut1").style.display="block";
+    document.getElementById("1a").style.display="block";
 }
-window.onload = getStarted;
+window.onload = getStarted; // Make it so that the starting div '1a' always gets displayed
 
 /**
- * Reset all the elements in the page
+ * @description Hide all the elements in the page
  */
-function resetElement() {
-    document.getElementById("debut1").style.display="none";
-    document.getElementById("debut1-1").style.display="none";
-    document.getElementById("debut1-2").style.display="none";
-    document.getElementById("debut1-3").style.display="none";
-    document.getElementById("debut2").style.display="none";
-    document.getElementById("debut2-1").style.display="none";
-    document.getElementById("debut2-2").style.display="none";
-    document.getElementById("monsterTurn").style.display="none";
-    document.getElementById("sellerTurn").style.display="none";
+function hideElement() {
+    document.getElementById("1a").style.display="none";
+    document.getElementById("1b").style.display="none";
+    document.getElementById("1c").style.display="none";
+    document.getElementById("2").style.display="none";
+    document.getElementById("3").style.display="none";
+    document.getElementById("4").style.display="none";
+    document.getElementById("5").style.display="none";
+    document.getElementById("monster").style.display="none";
+    document.getElementById("seller").style.display="none";
     document.getElementById("equip").style.display="none";
-
-    const buttonToDebut11 = document.getElementById('toDebut11')
-    buttonToDebut11.addEventListener('click', function () {
-
-        const player = makePlayer(namePlayer);
-
-
-        const pv = document.getElementById('showPV').value
-        pv.innerHTML = player.getPv()
-
-
-
-
-
-
-
-        return toDiv('debut1-1')
-    })
-
 }
 
+//#region NAVIGATION FROM ONE DIV TO ANOTHER
 /**
  * The page we want to move
  * @param {String} divToChange - the id of the page we want to move 
  */
 function toDiv(divToChange) {
     console.log(divToChange);
-    resetElement();
+    hideElement();
     const getId = document.getElementById(divToChange);
     if (getId) getId.style.display="block";
     else console.log("[toDiv] An error has occurred when changing page", divToChange);
 }
+hideElement();
 
-resetElement();
+const buttonTo1b = document.getElementById('to1b')
+buttonTo1b.addEventListener('click', () => toDiv('1b'));
+
+const buttonto1bfrom1c = document.getElementById('to1bfrom1c')
+buttonto1bfrom1c.addEventListener('click', () => toDiv('1b'));
+
+const buttonTo1c = document.getElementById('to1c')
+buttonTo1c.addEventListener('click', () => toDiv('1c'));
+
+const buttonTo2 = document.getElementById('to2')
+buttonTo2.addEventListener('click', () => toDiv('2'));
+
+const buttonTo2from1b = document.getElementById('to2from1b')
+buttonTo2from1b.addEventListener('click', () => toDiv('2'));
+
+const buttonTo2from1c = document.getElementById('to2from1c')
+buttonTo2from1c.addEventListener('click', () => toDiv('2'));
+
+const buttonTo3 = document.getElementById('to3')
+buttonTo3.addEventListener('click', () => toDiv('3'));
+
+const buttonTo4 = document.getElementById('to4')
+buttonTo4.addEventListener('click', () => toDiv('4'));
+
+const buttonTo5 = document.getElementById('to5')
+buttonTo5.addEventListener('click', () => toDiv('5'));
+
+const buttonToRandomFrom5 = document.getElementById('toRandomFrom5')
+buttonToRandomFrom5.addEventListener('click', () => randomize());
+
+const buttonToRandomFromEquip = document.getElementById('toRandomFromEquip')
+buttonToRandomFromEquip.addEventListener('click', () => randomize());
+
+const buttonToEquipFromSeller = document.getElementById('toEquipFromSeller')
+buttonToEquipFromSeller.addEventListener('click', () => toDiv('equip'));
+
+const buttonToEquipFromMonster = document.getElementById('toEquipFromMonster')
+buttonToEquipFromMonster.addEventListener('click', () => toDiv('equip'));
+
 //#endregion
-
-//#region Constructors for classes Monster, Seller and Player
-
-
-/**
- * Array to randomize monster name
- */
-
-
-
-//#endregion
-
-//#region Generating Player 
 
 
 function makePlayer(namePlayer) {
     let playerName = document.getElementById('playerName');
-    let player1 = new Player(player);
-    console.log("Player 1", player1);
-    return player1
+    let player = new Player(player);
+    console.log("Player", player);
+    return player
 }
 
-//#endregion
+const playerName = document.getElementById("playerName".value);
+const player = makePlayer(playerName);
 
-//#region Generating random turns (Monsters and Sellers)
 
 function meetSeller() {
     console.log('A seller will promptly be generated.');
     let seller = new Seller();
-    toDiv('sellerTurn');
+    toDiv('seller');
 }
 
 function meetMonster() {
     console.log('A monster will promptly be generated.');
     let monster = new Monster();
     console.log(`New monster ${monster._name} has a ${monster._experience} experience, ${monster._attack} attack, ${monster._defense} defense and ${monster._gold} gold.`); 
-    toDiv('monsterTurn');
+    toDiv('monster');
 }
-//meetMonster()
 /**
- * Function to randomize the next turn
+ * @description To randomize the following turn (monster||seller)
  */
 function randomize() { 
     console.log('Randomizing your next turn!');
@@ -112,4 +119,22 @@ function randomize() {
         meetMonster();
     }
 }
+
+//#region Show player's properties
+
+
+const pv = document.getElementById('showPv').value
+pv.innerHTML = player.getPv()
+
+const exp = document.getElementById('showExp').value
+exp.innerHTML = player.getExp()
+
+const att = document.getElementById('showAtt').value
+att.innerHTML = player.getAtt()
+
+const def = document.getElementById('showDef').value
+def.innerHTML = player.getDef()
+
+const gold = document.getElementById('showGold').value
+gold.innerHTML = player.getGold()
 //#endregion
