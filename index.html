@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dofousse</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <container>
+        <h1>Dofousse</h1><br>
+        <div id="playerInfo">
+            <p>Les données de votre personnage vont s'afficher ici dès qu'il aura été créé.</p>
+            <p>
+                <ul>
+                    <li><span id="showPLAYER">PLAYER</span>,</li>
+                    <li>PV : <span id="showPV">PV</span>,</li>
+                    <li>EXP : <span id="showEXP">EXP</span>,</li>
+                    <li>OR : <span id="showGOLD">GOLD</span></li>
+                </ul>
+            </p>
+        </div>
+
+        <div id="debut1">
+            <p>Bonjour brave guerrier. Es-tu prêt à affronter les monstres du donjon d'Incarnam ?</p>
+            <button onclick="toDiv('debut1-1')">Ils ne résisteront pas à mon épée !</button><br>
+            <button onclick="toDiv('debut1-2')">Je les aurai avec mes boules de feu !</button><br>
+            <button onclick="toDiv('debut1-3')">J'en ai marre qu'on oublie toujours les guerrières.</button>
+        </div>
+
+        <div id="debut1-1">
+            <p>Ça commence ! Mal, il faut dire. Je ne vois qu'une petite épée de boisaille dans ton inventaire. Autant dire que tu n'as que tes mains pour attaquer.</p>
+            <p>Sois (un peu) rassuré : au fur et à mesure que tu démontres ta témérité en triomphant contre des monstres sanguinolents, tu obtiendras suffisamment d'or pour t'acheter au moins une vraie arme.</p>
+            <button onclick="toDiv('debut2')">J'ai compris.</button> 
+        </div>
+
+        <div id="debut1-2">
+            <p>Ce jeu ne prend pas encore en charge les boules de feu. On essaye quand même ?</p> <button onclick="toDiv('debut2')">Bon, ok.</button>
+        </div>
+        
+        <div id="debut1-3">
+            <p>Mes excuses. Bonjour brave guerrière (ou bienveillant guerrier). Es-tu prête à affronter les monstres du donjon d'Incarnam ?</p>
+            <button onclick="toDiv('debut1-1')">Ils ne résisteront pas à mon épée !</button> 
+            <button onclick="toDiv('debut1-2')">Je les aurai avec mes boules de feu !</button>
+        </div>
+
+        <div id="debut2">
+            <p>Avant que tu ne te mettes à terrasser des monstres, j'aimerais savoir comment on t'appelle dans le Monde des Douze.</p>
+            <form onsubmit="return false"> <!-- Pour éviter que le formulaire ne rafraichisse la page. -->
+                <input type="text" name="name" id="playerName" placeholder="Zorro, Marco, Peach ..."><br>
+                <button onclick="toDiv('debut2-1');makePlayer()">Je certifie avoir bien communiqué mon nom.</button><!-- removed the submit from button -->
+            </form>
+        </div>
+        <div id="debut2-1">
+            <p>Je comprends donc que tu portes le joli nom de <span id="showName">Nom</span>.</p>
+            <p>Il faut encore que je te mette en garde : durant ton périple, tes rencontres seront de deux types. Tu croiseras parfois des forgerons qui pourront te vendre des armes ou racheter celles que tu ne désires plus. Sinon, tu chemineras sur les sentiers de créatures de tous types. Tu apercevras leurs silhouettes au loin et ce sera à toi de choisir si les combattre ou non. </p>
+            <p><ul>
+                <li>Gagner te permettra d'empocher les quelques sous que le monstre transportait alors avec lui ainsi qu'un peu d'expérience.</li> 
+                <li>Fuir ne te coûtera qu'un point d'expérience, mais cela t'éloignera de la victoire. Sache qu'il te faudra 50 points d'expérience pour vaincre le donjon !</li>
+                <li>Perdre le duel, par contre, te coûtera 1 point de vie et tu n'en as que 10 au total. Il te faudra donc sagement réfléchir.</li>
+            </ul></p>
+            <button type="submit" onclick="toDiv('debut2-2')">C'est pas bientôt fini le blabla ?</button>
+        </div>
+
+        <div id="debut2-2">
+            <p>Prêt pour ta première rencontre ? Tu es à un clic de te téléporter vers le donjon ! Tu auras à chaque tour 50% de chance de trouver face à toi un vendeur et 50% de chance de devoir sortir les armes.</p>
+            <p>Je te souhaite bien du courage !</p>
+            <button onclick="randomize()">Je me lance ! Pile ou face ?</button>
+        </div>
+
+        <div id="monsterTurn">
+            <p>
+                <h2>MONSTRE</h2>
+                <!--<h3>de niveau <span id="getMonsterExp()"></span></h3><br>-->
+                Que souhaites-tu faire ? <br>
+                <button>J'attaque !</button> <br>
+                <button onclick="toDiv('equip')">Sauve-qui-peut !</button>
+            </p>
+        </div> 
+
+        <div id="sellerTurn">
+            <p>
+                <h2>VENDEUR</h2>
+                <!--<h3>de niveau <span id="getSellerExp()"></span></h3><br>-->
+                    Que souhaites-tu faire ? <br>
+                <button>Lui acheter l'arme.</button> <br>
+                <button>Lui vendre une arme.</button>
+                <button onclick="toDiv('equip')">Je n'ai pas besoin d'une autre arme en mousse, ni de vendre.</button>
+            </p>
+        </div>   
+
+        <div id="equip">
+            Souhaites-tu équiper une nouvelle arme avant ton prochain tour ? 
+            <button>Oui, je veux brandir mon nouveau glaive étincelant.</button>
+            <button onclick="randomize()">Non, je suis satisfait.</button>
+        </div>
+
+       <!-- <div id="jeuCasse">
+            <p><h2>Erreur 404</h2></p>
+            <p>Je ne te félicite pas : tu as cassé Dofousse !</p>
+            <p>Envoie nous un petit mail à dofousse@anmaka.com, histoire qu'on répare tout ça.</p>
+            <button onclick="toDiv('debut1')">Je peux recommencer sivouplé ?</button>
+        </div> -->
+
+    </container>   
+    <script src="./jeu.js"></script>
+</body>
+</html>

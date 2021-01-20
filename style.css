@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inconsolata', monospace;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+}
+
+container {
+    flex-direction: column;
+}
+
+p {
+    margin: 10px 0px;
+}
+
+button {
+    font-family: 'Inconsolata', monospace;
+    font-size: .9em;
+    padding: 5px 10px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+input {
+    margin-top: 10px;
+    height: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+#playerInfo {
+    background-color: black;
+    color: white;
+    padding: 0px 10px;
+    width: 100%;
+}
+
+ul > li {
+    list-style-type: none;
+    display: inline;
+}
