@@ -64,7 +64,27 @@ const buttonTo3 = document.getElementById('to3')
 buttonTo3.addEventListener('click', () => toDiv('3'));
 
 const buttonTo4 = document.getElementById('to4')
-buttonTo4.addEventListener('click', () => toDiv('4'));
+buttonTo4.addEventListener('click', function() {
+    const playerName = document.getElementById("playerName".value);
+    const hero = makePlayer(playerName);
+    toDiv('4');
+    //#region Show player's properties
+    const pv = document.getElementById('showPv').value
+    pv.innerHTML = hero.getPv()
+
+    const exp = document.getElementById('showExp').value
+    exp.innerHTML = hero.getExp()
+
+    const att = document.getElementById('showAtt').value
+    att.innerHTML = hero.getAtt()
+
+    const def = document.getElementById('showDef').value
+    def.innerHTML = hero.getDef()
+
+    const gold = document.getElementById('showGold').value
+    gold.innerHTML = hero.getGold()
+});
+//#endregion
 
 const buttonTo5 = document.getElementById('to5')
 buttonTo5.addEventListener('click', () => toDiv('5'));
@@ -83,17 +103,11 @@ buttonToEquipFromMonster.addEventListener('click', () => toDiv('equip'));
 
 //#endregion
 
-
 function makePlayer(namePlayer) {
     let playerName = document.getElementById('playerName');
-    let player = new Player(player);
-    console.log("Player", player);
-    return player
+    let hero = new Player(playerName);
+    console.log("Player", hero);
 }
-
-const playerName = document.getElementById("playerName".value);
-const player = makePlayer(playerName);
-
 
 function meetSeller() {
     console.log('A seller will promptly be generated.');
@@ -120,21 +134,3 @@ function randomize() {
     }
 }
 
-//#region Show player's properties
-
-
-const pv = document.getElementById('showPv').value
-pv.innerHTML = player.getPv()
-
-const exp = document.getElementById('showExp').value
-exp.innerHTML = player.getExp()
-
-const att = document.getElementById('showAtt').value
-att.innerHTML = player.getAtt()
-
-const def = document.getElementById('showDef').value
-def.innerHTML = player.getDef()
-
-const gold = document.getElementById('showGold').value
-gold.innerHTML = player.getGold()
-//#endregion
