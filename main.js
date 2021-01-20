@@ -1,3 +1,8 @@
+import Player from './class/player.js'
+import Monster from './class/monstre.js'
+import Seller from './class/seller.js'
+
+
 //#region Showing & hiding HTML divs on index.html
 /**
  * Show only the intro div on start
@@ -21,6 +26,25 @@ function resetElement() {
     document.getElementById("monsterTurn").style.display="none";
     document.getElementById("sellerTurn").style.display="none";
     document.getElementById("equip").style.display="none";
+
+    const buttonToDebut11 = document.getElementById('toDebut11')
+    buttonToDebut11.addEventListener('click', function () {
+
+        const player = makePlayer(namePlayer);
+
+
+        const pv = document.getElementById('showPV').value
+        pv.innerHTML = player.getPv()
+
+
+
+
+
+
+
+        return toDiv('debut1-1')
+    })
+
 }
 
 /**
@@ -39,85 +63,24 @@ resetElement();
 //#endregion
 
 //#region Constructors for classes Monster, Seller and Player
-/**
- * 
- * @param {Integer} max // Function to return a random number between 0 and max
- */
-function randomNumber(max) { 
-    let number = Math.floor(Math.random() * max);  
-    return number;
-}
+
 
 /**
  * Array to randomize monster name
  */
-monsterNames = ['Tofu', 'Bouftou', 'Kanigrou', 'Blop Royal', 'Prespic', 'Piou', 'Chafer']
-/**
- * Constructor for the class Monster
- */
-class Monster {
-    constructor() {
-        this._name = monsterNames[randomNumber(monsterNames.length)];
-        this._experience = randomNumber(51); // de 0 à 50
-        this._attack = randomNumber(this._experience+1);
-        this._defense = randomNumber(this._experience+1);
-        this._gold = randomNumber(51);
-    }
-}
 
-/**
- * Constructor for the class Seller
- */
-class Seller {
-    constructor() {
-        this._experience = randomNumber(51); // de 0 à 50
-        this._weapon = randomNumber(5);
-    }
-}
+
+
 //#endregion
 
 //#region Generating Player 
-class Player {
-    constructor(name) {
-        this._name = name;
-        this._pv = 10;
-        this._experience = 0;
-        this._attack = 1;
-        this._defense = 1;
-        this._weaponEquipped = true;
-        this._weapons = []; //How to indicate an already existing weapon here?
-        this._gold = 20; 
-    }
-    getName() {
-        return this._name;
-    }
-    getPv() {
-        return this._pv;
-    }
-    getExp() {
-        return this._pv;
-    }
-    getAtt() {
-        return this._attack;
-    }
-    getDef() {
-        return this._defense;
-    }
-    getWeaponEquipped() {
-        return this._weaponEquipped;
-    }
-    getWeapons() {
-        return this._weapons;
-    }
-    getGold() {
-        return this._weapons;
-    }
-}
 
-function makePlayer() {
-    let playerNam = document.getElementById('playerName');
-    let Player1 = new Player(playerNam);
-    console.log(Player1);
+
+function makePlayer(namePlayer) {
+    let playerName = document.getElementById('playerName');
+    let player1 = new Player(player);
+    console.log("Player 1", player1);
+    return player1
 }
 
 //#endregion
@@ -136,7 +99,7 @@ function meetMonster() {
     console.log(`New monster ${monster._name} has a ${monster._experience} experience, ${monster._attack} attack, ${monster._defense} defense and ${monster._gold} gold.`); 
     toDiv('monsterTurn');
 }
-meetMonster();
+//meetMonster()
 /**
  * Function to randomize the next turn
  */
