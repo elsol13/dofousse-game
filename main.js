@@ -65,23 +65,33 @@ buttonTo3.addEventListener('click', () => toDiv('3'));
 
 const buttonTo4 = document.getElementById('to4')
 buttonTo4.addEventListener('click', function() {
-    const playerName = document.getElementById("playerName".value);
-    const hero = makePlayer(playerName);
+    const pname = document.getElementById("playerName").value;
+    const hero = makePlayer(pname);
     toDiv('4');
+    
     //#region Show player's properties
-    const pv = document.getElementById('showPv').value
+    const name = document.getElementById('showPlayer')
+    if (!name) console.error("Name not found")
+    name.innerHTML = hero.getName()
+
+    const name2 = document.getElementById('showName')
+    if (!name2) console.error("Name not found")
+    name2.innerHTML = hero.getName()
+
+    const pv = document.getElementById('showPv')
+    if (!pv) console.error("PV not found")
     pv.innerHTML = hero.getPv()
 
-    const exp = document.getElementById('showExp').value
+    const exp = document.getElementById('showExp')
     exp.innerHTML = hero.getExp()
 
-    const att = document.getElementById('showAtt').value
+    const att = document.getElementById('showAtt')
     att.innerHTML = hero.getAtt()
 
-    const def = document.getElementById('showDef').value
+    const def = document.getElementById('showDef')
     def.innerHTML = hero.getDef()
 
-    const gold = document.getElementById('showGold').value
+    const gold = document.getElementById('showGold')
     gold.innerHTML = hero.getGold()
 });
 //#endregion
@@ -104,9 +114,10 @@ buttonToEquipFromMonster.addEventListener('click', () => toDiv('equip'));
 //#endregion
 
 function makePlayer(namePlayer) {
-    let playerName = document.getElementById('playerName');
-    let hero = new Player(playerName);
+    //let playerName = document.getElementById('playerName');
+    let hero = new Player(namePlayer);
     console.log("Player", hero);
+    return hero
 }
 
 function meetSeller() {

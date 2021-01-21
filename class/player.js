@@ -37,7 +37,7 @@ class Player {
         return this._weapons;
     }
     getGold() {
-        return this._weapons;
+        return this._gold;
     }
 }
 
