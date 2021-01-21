@@ -13,6 +13,24 @@ class Monster {
         this._defense = randomNumber(this._experience+1);
         this._gold = randomNumber(51);
     }
+    getName() {
+        return this._name;
+    }
+    getExp() {
+        return this._experience;
+    }
+    getAtt() {
+        return this._attack;
+    }
+    getDef() {
+        return this._defense;
+    }
+    getWeapons() {
+        return this._weapons;
+    }
+    getGold() {
+        return this._gold;
+    }
 }
 
 export default Monster

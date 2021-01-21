@@ -39,6 +39,34 @@ class Player {
     getGold() {
         return this._weapons;
     }
+
+    fight (monster) {
+//calculate player's score
+        let resultPlayer = this._pv + this._attack + this._defense
+//calculate monster's score
+        let resultMonster = monster.getAtt() + monster.getDef() + monster.getExp()
+//compare player's score and monster's score to determinate who wins
+        if (resultPlayer > resultMonster) {
+            //destroy monster
+        }
+        else{ 
+            if (this._pv === 0){
+                alert("You have lost. Better luck next time")
+                return false
+            }else{
+                this._pv--;
+                return true
+            }
+        }
+//if player win, monster is deleted
+
+//if mo;ter win, and player have 0 HP, then go back to first page
+
+// if monster win and player still have HP, then continue to next round (monster or seller)
+
+
+
+    }
 }
 
 export default Player

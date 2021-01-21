@@ -77,10 +77,35 @@ resetElement();
 
 
 function makePlayer(namePlayer) {
-    let playerName = document.getElementById('playerName');
-    let player1 = new Player(player);
+   // let playerName = document.getElementById('playerName');
+    let player1 = new Player(namePlayer);
     console.log("Player 1", player1);
     return player1
+}
+
+function fightMain (player, monster) {
+
+    const fightResult = player.fight(monster) // true || false
+    if (fightResult){
+        //
+    }else {
+        // windows reload
+    }
+}
+
+function giveMeMyChocolate (chocolat) {
+    //prender le chocolat
+
+    if (chocolat === "Ovomaltine") {
+        return "Ovomaltine"
+    }else{
+        return "J'ai rien de tout"
+    }
+}
+
+function MArcoGucntion () {
+    const resultat = giveMeMyChocolate("Lindth") //<-- Ovomaltine
+    console.log(resultat)
 }
 
 //#endregion
