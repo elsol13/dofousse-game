@@ -12,7 +12,7 @@
     <container>
         <h1><a href="">Dofousse</a></h1><br>
         <div id="playerInfo">
-            Les données de votre personnage vont s'afficher ici dès qu'il aura été créé.</p>
+            <p class="data">Les données de votre personnage vont s'afficher ici dès qu'il aura été créé.</p>
                 <ul>
                     <li><span id="showPlayer">PLAYER</span>,</li>
                     <li>PV: <span id="showPv">...</span>,</li>
@@ -78,7 +78,8 @@
         <div id="monster">
             <p>
                 <h2>MONSTRE</h2>
-                <!--<h3>de niveau <span id="getMonsterExp()"></span></h3><br>-->
+                <h3>de niveau <span id="showMonsterExp"></span></h3><br>
+                <h4>ATT : <span id="getMonsterAtt"></span>, DEF : <span id="getMonsterDef">,</span>GOLD : <span id="getMonsterGold"></span></h4>
                 Que souhaites-tu faire ? <br>
                 <button>J'attaque !</button> <br>
                 <button id="toEquipFromMonster">Sauve-qui-peut !</button>

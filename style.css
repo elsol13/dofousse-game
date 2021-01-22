@@ -39,18 +39,20 @@ input {
     height: 20px;
 }
 
-li {
+/* li {
     margin-bottom: 10px;
-}
+} */
 
 #playerInfo {
-    background-color: black;
-    color: white;
-    padding: 0px 10px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 2%;
     width: 100%;
+    margin: 15px 0px;
 }
 
 ul > li {
     list-style-type: none;
     display: inline;
 }
+

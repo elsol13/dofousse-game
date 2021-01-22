@@ -15,6 +15,8 @@ class Player {
         this._weapons = []; //How to indicate an already existing weapon here?
         this._gold = 20; 
     }
+    fight() {  
+    }
     getName() {
         return this._name;
     }
